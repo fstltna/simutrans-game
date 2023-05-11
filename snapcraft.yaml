@@ -1,0 +1,29 @@
+name: simutrans-game # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '2.5.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary:  A free transportation simulator game
+description: |
+  Simutrans is a cross-platform simulation game where players try to successfully manage transportation systems between places by land, air, and water for passengers, mail, and goods. Planes, ships, trains, trams, trucks, buses, or monorails are at your disposal, but factories operate based on contracts and passengers can only travel to their set destinations.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  simutrans_icon.png
+title: Simutrans
+
+apps:
+  simutrans:
+    command: simutrans
+parts:
+  simutrans:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      simutrans: build/
+      simutrans.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
